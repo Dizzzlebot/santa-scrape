@@ -1,14 +1,19 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
 var request = require("request");
-request(
-  "https://www.amazon.com/gp/site-directory?ref_=nav_em_T1_0_2_2_37__fullstore",
-  (error, response, html) => {
-    if (!error && response.statusCode == 200) {
-      console.log(html);
-    }
+request("https://www.amazon.com/", (error, response, html) => {
+  if (!error && response.statusCode == 200) {
+    var $ = cheerio.load(html);
+
+    var aPage = $(".a-Page");
+    console.log(aPage);
+    //var output = aPage
+    // .children("h1")
+    // .parent()
+    // .text();
+    //console.log(output);
   }
-);
+});
 
 //.then(function(response) {
 // Load the html body from axios into cheerio
